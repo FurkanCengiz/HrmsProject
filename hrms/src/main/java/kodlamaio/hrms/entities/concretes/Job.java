@@ -23,6 +23,7 @@ public class Job {
 	
 	public Job() {
 		super();
+	
 	}
 
 
@@ -30,7 +31,6 @@ public class Job {
 		super();
 		this.id = id;
 		this.name = name;
-		
 	}
 	
 
