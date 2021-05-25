@@ -22,6 +22,7 @@ private JobDao jobDao;
 }
 
 	
+	
 	@Override
 	public DataResult<List<Job>> getAll() {
 		

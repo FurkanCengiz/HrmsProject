@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes;
+package kodlamaio.hrms.entities.abstracts;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,16 +11,17 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-
-public class User {
+public abstract class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
