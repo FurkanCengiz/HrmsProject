@@ -46,7 +46,7 @@ public class CandidateManager implements CandidateService {
 			return new ErrorResult("Mernis doğrulaması geçersiz.");
 		}
 		if(candidate.getPassword() == null) {
-			return new ErrorResult("Şifre boş bırakılamaz.");
+			return new ErrorResult("Şifre boş bırakılamaz");
 		}
 		else {
 

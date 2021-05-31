@@ -9,7 +9,9 @@ public class SystemUserValidatemManager implements SystemUserValidateService {
 	@Override
 	public boolean isValidatedBySystemUser(Employer employer) {
 	
+		
 		return true;
+		
 	}
 
 }
