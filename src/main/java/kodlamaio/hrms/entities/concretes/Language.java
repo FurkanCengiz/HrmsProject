@@ -1,6 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,29 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="jobs")
 @Data
+@Entity
+@Table(name = "languages")
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Job {
+public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
+	@NotNull
+	@Column(name = "language_name")
+	private String languageName;
 	
-	@Column(name="position")
-	private String position;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="job")
-	private List<JobPosition> jobPositions;
+	@JsonIgnore()
+	@OneToMany(mappedBy = "language")
+	private List<CandidateLanguage> candidateLanguages;
 
 }

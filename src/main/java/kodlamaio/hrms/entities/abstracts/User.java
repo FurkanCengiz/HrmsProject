@@ -22,6 +22,10 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public abstract class User {
+	public User(String email,String password) {
+		this.email=email;
+		this.password=password;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
