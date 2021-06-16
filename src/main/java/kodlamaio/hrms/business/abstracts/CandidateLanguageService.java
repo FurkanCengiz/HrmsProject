@@ -6,10 +6,13 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateLanguage;
 
-
 public interface CandidateLanguageService {
- DataResult<List<CandidateLanguage>> getAll();
- Result add(CandidateLanguage candidateLanguage);
- DataResult<CandidateLanguage> getByCandidateId(int candidateId);
+	DataResult<List<CandidateLanguage>> getAll();
+
+	Result add(CandidateLanguage candidateLanguage);
+
+	DataResult<List<CandidateLanguage>> getAllByCandidateId(int candidateId);
+
+	Result addAll(List<CandidateLanguage> candidateLanguages);
 
 }

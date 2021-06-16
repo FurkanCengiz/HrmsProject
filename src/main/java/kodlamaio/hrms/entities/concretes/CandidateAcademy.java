@@ -1,9 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
-
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,11 +42,18 @@ public class CandidateAcademy {
 	
 	@Column(name = "finished_year")
 	private LocalDate finishedYear;
-	
+
 	@ManyToOne()
 	@JsonIgnore()
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;
 	
-	
+	/*public CandidateAcademy(Candidate candidate,String schoolName,
+			String departmentName,LocalDate startedYear,LocalDate finishedYear) {
+		this.setCandidate(candidate);
+		this.setDepartmentName(departmentName);
+		this.setFinishedYear(finishedYear);
+		this.setSchoolName(schoolName);
+		this.setStartedYear(startedYear);
+	}*/
 }

@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.adapters;
+package kodlamaio.hrms.core.utilities.Image.abstracts;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -11,4 +11,10 @@ public interface CandidateTechnologyService {
 	DataResult<List<CandidateTechnology>> getAll();
 	
 	Result add(CandidateTechnology candidateTechnology);
+	
+	Result addAll(List<CandidateTechnology> candidateTechnologies);
+	
+	DataResult<List<CandidateTechnology>> getAllByCandidateId(int candidateId);
+	
+	
 }

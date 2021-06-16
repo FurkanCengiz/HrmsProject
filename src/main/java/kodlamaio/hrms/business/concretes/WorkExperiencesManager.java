@@ -34,5 +34,17 @@ public class WorkExperiencesManager implements WorkExperiencesService{
 		this.workExperiencesDao.save(workExperiences);
 		return new SuccessResult("Eklendi");
 	}
+
+	@Override
+	public Result addAll(List<WorkExperiences> workExperiences) {
+		this.workExperiencesDao.saveAll(workExperiences);
+		return new SuccessResult("tecrube eklendi");
+	}
+
+	@Override
+	public SuccessDataResult<List<WorkExperiences>> getByCandidateIdOrderByStartedYear(int candidateId) {
+		// TODO Auto-generated method stub
+		return new SuccessDataResult<List<WorkExperiences>>(this.workExperiencesDao.getByCandidateIdOrderByStartedYear(candidateId),"experiences eklendi");
+	}
 	
 }

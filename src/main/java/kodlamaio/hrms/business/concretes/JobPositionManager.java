@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,39 @@ import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CityDao;
+import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
+import kodlamaio.hrms.dataAccess.abstracts.WayOfWorkingDao;
+import kodlamaio.hrms.dataAccess.abstracts.WorkTypeDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.dtos.JobPositionDto;
 
 @Service
 public class JobPositionManager implements JobPositionService{
 	private JobPositionDao jobPositionDao;
+	private EmployerDao employerDao;
+	private CityDao cityDao;
+	private WayOfWorkingDao wayOfWorkingDao;
+	private JobDao jobDao;
+	private WorkTypeDao workTypeDao;
 	
 	@Autowired
-	public JobPositionManager(JobPositionDao jobPositionDao) {
+	public JobPositionManager(JobPositionDao jobPositionDao, EmployerDao employerDao, CityDao cityDao,
+			WayOfWorkingDao wayOfWorkingDao, JobDao jobDao, WorkTypeDao workTypeDao) {
 		super();
 		this.jobPositionDao = jobPositionDao;
+		this.employerDao = employerDao;
+		this.cityDao = cityDao;
+		this.wayOfWorkingDao = wayOfWorkingDao;
+		this.jobDao = jobDao;
+		this.workTypeDao = workTypeDao;
 	}
+
+
+	
+	
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
@@ -30,11 +52,11 @@ public class JobPositionManager implements JobPositionService{
 		return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAll(),"Data listelendi");
 	}
 
-	@Override
-	public Result add(JobPosition jobPosition) {
-		jobPositionDao.save(jobPosition);
-		return new SuccessResult("Eklendi");
-	}
+	
+	/*@Override
+	public Result add(JobPositionDto jobPositionDto) {
+		
+	}*/
 
 	@Override
 	public Result update(JobPosition jobPosition) {
@@ -76,8 +98,41 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public DataResult<JobPosition> getById(int id) {
-	
-		return new SuccessDataResult<JobPosition>(this.jobPositionDao.getOne(id),"id");
+		JobPosition jobPosition=jobPositionDao.findById(id).stream().findFirst().get();
+		return new SuccessDataResult<JobPosition>(jobPosition,"id");
 	}
 
+	/*@Override
+	public DataResult<List<JobPositionDto>> getJobPositionWithEmployerDetails() {
+		
+		return new SuccessDataResult<List<JobPositionDto>>(this.jobPositionDao.getJobPositionWithEmployerDetails());
+	}*/
+
+	@Override
+	public Result add(JobPositionDto jobPositionDto) {
+		JobPosition jobPosition=new JobPosition();
+		jobPosition.setEmployer(this.employerDao.getOne(jobPositionDto.getEmployerId()));
+		jobPosition.setCity(this.cityDao.getOne(jobPositionDto.getCityId()));
+		jobPosition.setDescription(jobPositionDto.getDescription());
+		jobPosition.setDeadline(jobPositionDto.getDeadline());
+		jobPosition.setJob(this.jobDao.getOne(jobPositionDto.getJobId()));
+		jobPosition.setMaxSalary(jobPositionDto.getMaxSalary());
+		jobPosition.setMinSalary(jobPositionDto.getMinSalary());
+		jobPosition.setQuota(jobPositionDto.getQuota());
+		jobPosition.setWayOfWorking(this.wayOfWorkingDao.getOne(jobPositionDto.getWayOfWorkingId()));
+		jobPosition.setWorkType(this.workTypeDao.getOne(jobPositionDto.getWayOfWorkingId()));	
+		jobPosition.setCreatedDate(LocalDateTime.now());
+		jobPosition.setActive(true);
+		this.jobPositionDao.save(jobPosition);
+		return new SuccessResult("eklendi");
+	
+	}
+
+/*	@Override
+	public DataResult<JobPosition> getByJobPositionId(int id) {
+		JobPosition jobPosition=jobPositionDao.findById(id).stream().findFirst().get();
+		return new SuccessDataResult<JobPosition>(jobPosition,"Listlendi");
+	}
+*/
+	
 }

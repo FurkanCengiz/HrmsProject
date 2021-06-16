@@ -18,8 +18,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "system_users")
 public class SystemUser extends User{
 	
+
+	public SystemUser(String email, String password, String firstName, String lastName) {
+		super(email, password);
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	@Column(name = "first_name")
 	private String firstName;
+	
 	
 	@Column(name = "last_name")
 	private String lastName;

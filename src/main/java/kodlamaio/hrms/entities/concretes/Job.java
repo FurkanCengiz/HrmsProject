@@ -3,6 +3,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Job {
 	private String position;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="job")
+	@OneToMany(mappedBy="job",cascade = CascadeType.ALL , orphanRemoval = true)
 	private List<JobPosition> jobPositions;
 
 }

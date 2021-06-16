@@ -1,6 +1,8 @@
 package kodlamaio.hrms.api.controllers;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.SystemUser;
 @RestController
 @RequestMapping("/api/systemusers")
+@CrossOrigin
 public class SystemUserController {
 	
 	private SystemUserService systemUserService;
@@ -22,13 +25,13 @@ public class SystemUserController {
 		this.systemUserService = systemUserService;
 	}
 	@GetMapping("/getall")
-	public DataResult<List<SystemUser>>getAll(){
-		return systemUserService.getAll();
+	public ResponseEntity<?> getAll(){
+		return ResponseEntity.ok(systemUserService.getAll());
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody SystemUser systemUser) {
-		return systemUserService.add(systemUser);
+	public  ResponseEntity<?> add(@RequestBody SystemUser systemUser) {
+		return ResponseEntity.ok(systemUserService.add(systemUser));
 	}
 
 }

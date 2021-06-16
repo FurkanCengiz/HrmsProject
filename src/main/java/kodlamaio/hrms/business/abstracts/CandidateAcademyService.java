@@ -15,4 +15,7 @@ public interface CandidateAcademyService {
 	Result add(CandidateAcademy candidateAcademy);
 	
 	Result addAll(List<CandidateAcademy> candidateAcademies);
+	
+	DataResult<List<CandidateAcademy>> getAllByCandidateIdOrderByFinishedYear(int candidateId);
+
 }

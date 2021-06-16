@@ -36,10 +36,19 @@ public class CandidateLanguageManager implements CandidateLanguageService{
 		return new SuccessResult("Eklendi");
 	}
 
+
+
 	@Override
-	public DataResult<CandidateLanguage> getByCandidateId(int candidateId) {
+	public Result addAll(List<CandidateLanguage> candidateLanguages) {
+		candidateLanguageDao.saveAll(candidateLanguages);
+		return new SuccessResult("Eklendi");
+	}
+
+	@Override
+	public DataResult<List<CandidateLanguage>> getAllByCandidateId(int candidateId) {
+		// TODO Auto-generated method stub
+		return new SuccessDataResult<List<CandidateLanguage>>(this.candidateLanguageDao.getAllByCandidateId(candidateId),"eklendi");
 		
-		return new SuccessDataResult<CandidateLanguage>(this.candidateLanguageDao.getByCandidateId(candidateId));
 	}
 
 }

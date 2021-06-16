@@ -2,7 +2,10 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,13 +30,13 @@ public class CandidateLanguageController {
 	}
 
 	@GetMapping("/getall")
-	public DataResult<List<CandidateLanguage>> gettAll() {
-		return this.candidateLanguageService.getAll();
+	public ResponseEntity<?> gettAll() {
+		return ResponseEntity.ok(this.candidateLanguageService.getAll());
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody CandidateLanguage candidateLanguage) {
-		return this.candidateLanguageService.add(candidateLanguage);
+	public ResponseEntity<?> add(@RequestBody @Valid CandidateLanguage candidateLanguage) {
+		return ResponseEntity.ok(this.candidateLanguageService.add(candidateLanguage));
 
 	}
 	

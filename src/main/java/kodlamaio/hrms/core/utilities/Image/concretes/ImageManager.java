@@ -1,22 +1,26 @@
-package kodlamaio.hrms.core.utilities.adapters;
+package kodlamaio.hrms.core.utilities.Image.concretes;
 
 import java.io.IOException;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import kodlamaio.hrms.core.utilities.Image.abstracts.ImageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
-
+@Component
 public class ImageManager implements ImageService{
 
 	private Cloudinary cloudinary;
 	
-	
+	@Autowired
 	public ImageManager(Cloudinary cloudinary) {
 		super();
 		this.cloudinary = cloudinary;

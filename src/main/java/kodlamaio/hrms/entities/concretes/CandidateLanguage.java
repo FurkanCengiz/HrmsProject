@@ -10,9 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,7 +31,8 @@ public class CandidateLanguage {
 	@Column(name = "id")
 	private int id;
 	
-	@Size(min = 4,max = 5 )
+	@Min(1)
+	@Max(5)
 	@NotNull
 	@Column(name = "language_level")
 	private short langugeLevel;

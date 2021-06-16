@@ -31,5 +31,15 @@ public Result add(CandidateTechnology candidateTechnology) {
 	this.candidateTechnologyDao.save(candidateTechnology);
 	return new SuccessResult("Eklendi");
 }
-
+@Override
+public Result addAll(List<CandidateTechnology> candidateTechnologies) {
+	this.candidateTechnologyDao.saveAll(candidateTechnologies);
+	return new SuccessResult("Eklendi");
+}
+@Override
+public DataResult<List<CandidateTechnology>> getAllByCandidateId(int candidateId) {
+	// TODO Auto-generated method stub
+	return new SuccessDataResult<List<CandidateTechnology>>(this.candidateTechnologyDao.getAllByCandidateId(candidateId));
+	
+}
 }

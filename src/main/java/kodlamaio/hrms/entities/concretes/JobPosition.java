@@ -3,7 +3,7 @@ package kodlamaio.hrms.entities.concretes;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,6 +41,14 @@ public class JobPosition {
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;
+	
+	@ManyToOne()
+	@JoinColumn(name = "wayof_working_id")
+	private WayOfWorking wayOfWorking;
+	
+	@ManyToOne()
+	@JoinColumn(name = "work_type_id")
+	private WorkType workType;
 
 	@Column(name = "description")
 	private String description;
