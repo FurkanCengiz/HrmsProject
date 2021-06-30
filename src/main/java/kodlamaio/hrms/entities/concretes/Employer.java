@@ -45,8 +45,11 @@ public class Employer extends User {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	
+	@Column(name = "is_active_update")
+	private boolean isActiveUpdate;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy="employer",cascade = CascadeType.ALL , orphanRemoval = true)
+	@OneToMany(mappedBy="employer")
 	private List<JobPosition> jobPositions;
 	
 	

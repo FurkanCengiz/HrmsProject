@@ -34,4 +34,11 @@ public class SystemUserManager implements SystemUserService {
 		return new SuccessResult("Eklendi");
 	}
 
+	@Override
+	public Result update(SystemUser systemUser) {
+		systemUserDao.save(systemUser);
+		return new SuccessResult("Eklendi");
+	}
+	
+
 }

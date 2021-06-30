@@ -44,7 +44,7 @@ public class CandidateManager implements CandidateService {
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao, EmailValidateService emailValidateService,
 			MernisService mernisService, WorkExperiencesService workExperiencesService, LanguageService languageService,
-			CandidateTechnologyService candidateTechnologyService, CandidateLanguageService candidateLanguageService,CandidateAcademyService candidateAcademyService,CandidateLinkService candidateLinkService) {
+			CandidateTechnologyService candidateTechnologyService, CandidateLanguageService candidateLanguageService,CandidateAcademyService candidateAcademyService,CandidateLinkService candidateLinkService,CandidateImageService candidateImageService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.emailValidateService = emailValidateService;
@@ -55,6 +55,7 @@ public class CandidateManager implements CandidateService {
 		this.candidateLanguageService = candidateLanguageService;
 		this.candidateAcademyService=candidateAcademyService;
 		this.candidateLinkService = candidateLinkService;
+		this.candidateImageService =candidateImageService;
 	}
 
 	@Override
@@ -107,7 +108,7 @@ public class CandidateManager implements CandidateService {
 		cvDto.setCandidateImages(this.candidateImageService.getAllByCandidateId(candidateId).getData());
 		cvDto.setCandidateLinks(this.candidateLinkService.getAllByCandidateId(candidateId).getData());
 		
-		return new SuccessDataResult<CvDto>(cvDto);
+		return new SuccessDataResult<>(cvDto);
 	}
 
 }

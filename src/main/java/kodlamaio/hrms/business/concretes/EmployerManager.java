@@ -77,5 +77,31 @@ public class EmployerManager implements EmployerService {
 		
 		return new SuccessDataResult<Employer>(employer,"id");
 	}
+/*	Result setByisActivetoPassive(int id);
+	
+	Result setByisPassivetoActive(int id);*/
+	
+	/*	
+	@Override
+	public Result setByisPassivetoActive(int id) {
+		JobPosition jobPosition=getById(id).getData();
+		if(jobPosition.isActive() == false) {
+			jobPosition.setActive(true);
+			update(jobPosition);
+			return new  SuccessResult("aktif oldu");
+		}else
+			return new ErrorResult("zaten aktif");
+	}
+	}*/
+	@Override
+	public Result update(Employer employer,int id) {
+		if(employer.isActiveUpdate() == false) {
+			employer.setActiveUpdate(true);
+			employerDao.save(employer);
+			return new SuccessResult("aktif oldu");
+		}else {
+			return new ErrorResult("");
+		}
+	}
 
 }

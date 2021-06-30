@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,4 +35,8 @@ public class SystemUserController {
 		return ResponseEntity.ok(systemUserService.add(systemUser));
 	}
 
+	@PutMapping("/updateSystemUser")
+	public  ResponseEntity<?> update(@RequestBody SystemUser systemUser) {
+		return ResponseEntity.ok(systemUserService.update(systemUser));
+	}
 }

@@ -1,12 +1,8 @@
 package kodlamaio.hrms.entities.dtos;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.abstracts.Dto;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateAcademy;
@@ -14,7 +10,6 @@ import kodlamaio.hrms.entities.concretes.CandidateImage;
 import kodlamaio.hrms.entities.concretes.CandidateLanguage;
 import kodlamaio.hrms.entities.concretes.CandidateLink;
 import kodlamaio.hrms.entities.concretes.CandidateTechnology;
-import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.concretes.LinkType;
 import kodlamaio.hrms.entities.concretes.WorkExperiences;
 import lombok.AllArgsConstructor;

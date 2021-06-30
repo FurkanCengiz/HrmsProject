@@ -26,6 +26,7 @@ public class CandidateController {
 	@Autowired
 	public CandidateController(CandidateService candidateService) {
 		super();
+		
 		this.candidateService = candidateService;
 	}
 	@GetMapping("/getall")
@@ -35,7 +36,7 @@ public class CandidateController {
 	}
 	
 
-	@PostMapping("/add")
+	@GetMapping("/add")
 	public ResponseEntity<?> getCvByCandidateId( @RequestParam int candidateId) {
 		return ResponseEntity.ok(this.candidateService.getCvByCandidateId(candidateId));
 	

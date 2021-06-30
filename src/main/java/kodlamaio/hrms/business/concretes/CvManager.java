@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +13,11 @@ import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.CandidateTechnologyService;
 import kodlamaio.hrms.business.abstracts.CvService;
 import kodlamaio.hrms.business.abstracts.WorkExperiencesService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateAcademy;
 import kodlamaio.hrms.entities.dtos.CvDto;
@@ -28,6 +33,7 @@ public class CvManager implements CvService{
 	private CandidateAcademyService candidateAcademyService;
 	private CandidateImageService candidateImageService;
 	private CandidateLinkService candidateLinkService;
+	private CandidateDao candidateDao;
 	
 	
 	@Autowired
@@ -42,6 +48,7 @@ public class CvManager implements CvService{
 		this.candidateAcademyService= candidateAcademyService;
 		this.candidateImageService = candidateImageService;
 		this.candidateLinkService = candidateLinkService;
+		
 	}
 
 
@@ -56,8 +63,10 @@ public class CvManager implements CvService{
 	candidateTechnologyService.addAll(cvDto.getCandidateTechnologies());
 	cvDto.getCandidateLanguages().forEach(candidateLanguage -> candidateLanguage.setCandidate(candidate));
 	candidateLanguageService.addAll(cvDto.getCandidateLanguages());
+	
 	cvDto.getCandidateAcademies().forEach(CandidateAcademy -> CandidateAcademy.setCandidate(candidate));
 	candidateAcademyService.addAll(cvDto.getCandidateAcademies());
+	
 	cvDto.getCandidateImages().forEach(candidateImage -> candidateImage.setCandidate(candidate));
 	candidateImageService.addAll(cvDto.getCandidateImages());
 	cvDto.getCandidateLinks().forEach(candidateLink-> candidateLink.setCandidate(candidate));
@@ -66,5 +75,39 @@ public class CvManager implements CvService{
 	return new SuccessResult("Cv eklendi");
 		
 	}
+
+
+
+	@Override
+	public Result update(CvDto cvDto, int candidateId) {
+		Candidate candidate = candidateService.getById(candidateId).getData();
+		cvDto.setCandidate(candidate);
+		cvDto.getWorkExperiences().forEach(workExperiences -> workExperiences.setCandidate(candidate));
+		workExperiencesService.addAll(cvDto.getWorkExperiences());
+		cvDto.getCandidateTechnologies().forEach(candidateTechnology -> candidateTechnology.setCandidate(candidate));
+		candidateTechnologyService.addAll(cvDto.getCandidateTechnologies());
+		cvDto.getCandidateLanguages().forEach(candidateLanguage -> candidateLanguage.setCandidate(candidate));
+		candidateLanguageService.addAll(cvDto.getCandidateLanguages());
+		
+		cvDto.getCandidateAcademies().forEach(CandidateAcademy -> CandidateAcademy.setCandidate(candidate));
+		candidateAcademyService.addAll(cvDto.getCandidateAcademies());
+		
+		cvDto.getCandidateImages().forEach(candidateImage -> candidateImage.setCandidate(candidate));
+		candidateImageService.addAll(cvDto.getCandidateImages());
+		cvDto.getCandidateLinks().forEach(candidateLink-> candidateLink.setCandidate(candidate));
+		candidateLinkService.addAll(cvDto.getCandidateLinks());
+		return new SuccessResult("Cv güncelendi");
+	}
+
+
+
+
+
+
+	
+	
+
+
+
 
 }

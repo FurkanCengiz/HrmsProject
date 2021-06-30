@@ -1,10 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
-
 import java.sql.Date;
 import java.time.LocalDateTime;
-
-import org.springframework.data.jpa.repository.Query;
-
 import kodlamaio.hrms.entities.abstracts.Dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
