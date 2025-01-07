@@ -56,7 +56,7 @@ HRMS Projesi, işverenlerin iş ilanlarını oluşturabileceği ve yönetebilece
    ```
 4. PostgreSQL veritabanını oluşturun ve `application.properties` dosyasındaki ayarları güncelleyin:
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/hrms
+   spring.datasource.url=jdbc:postgresql://localhost:3306/hrms
    spring.datasource.username=root
    spring.datasource.password=yourpassword
    ```
