@@ -36,7 +36,7 @@ HRMS Projesi, işverenlerin iş ilanlarını oluşturabileceği ve yönetebilece
 
 - **Java 17+**
 - **Spring Boot**
-- **PestgreSQL**
+- **PostgreSQL**
 - **Maven**
 - **Postman (isteğe bağlı)**
 
@@ -73,7 +73,7 @@ HRMS Projesi, işverenlerin iş ilanlarını oluşturabileceği ve yönetebilece
 ## Teknolojiler
 
 - **Backend:** Java, Spring Boot
-- **Veritabanı:** MySQL, Hibernate
+- **Veritabanı:** PostgreSQL, Hibernate
 - **API:** RESTful API
 - **Proje Yönetimi:** Maven
 
